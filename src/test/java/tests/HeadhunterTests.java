@@ -42,6 +42,7 @@ public class HeadhunterTests extends TestBase {
 
     @Test
     @DisplayName("Регистрация нового пользователя")
+    @Description("Тест падает из за Капчи")
     public void userRegistrationTest() {
         step("Открываем страницу Регистрации", () -> {
             open(registPage);
@@ -64,6 +65,7 @@ public class HeadhunterTests extends TestBase {
 
     @Test
     @DisplayName("Вход авторизованного пользователя")
+    @Description("Тест падает из за Капчи")
     public void logInAsAnAuthorizedUser() {
         step("Открываем главную страницу", () ->   open(baseUrl));
             $(byText("Всё верно")).click();
@@ -77,7 +79,8 @@ public class HeadhunterTests extends TestBase {
     }
 
     @Test
-    @DisplayName("Пользователь должен иметь возможность выбрать регион")
+    @DisplayName("Выбор региона")
+    @Description("Пользователь должен иметь возможность выбрать регион")
     public void selectRegionTest() {
         step("Открываем главную страницу", () -> open(baseUrl));
         step("Устанавливаем локацию г.Москва", () -> {
@@ -89,7 +92,8 @@ public class HeadhunterTests extends TestBase {
     }
 
     @Test
-    @DisplayName("Пользователь должен иметь возможность найти необходимую вакансию")
+    @DisplayName("Поиск вакансии")
+    @Description("Пользователь должен иметь возможность найти необходимую вакансию")
     public void searchVacanciesTest() {
         step("Открываем главную страницу", () -> open(baseUrl));
         step("Устанавливаем локацию г.Москва", () -> {
@@ -107,7 +111,8 @@ public class HeadhunterTests extends TestBase {
     }
 
     @Test
-    @DisplayName("Пользователь должен иметь возможность передать скопированную ссылку")
+    @DisplayName("Отправка ссылки другому Юзеру")
+    @Description("Пользователь должен иметь возможность передать скопированную ссылку")
     public void switchToNewWindowsTest() {
         step("Открываем главную страницу", () -> {
             open("https://hh.ru/vacancy/38506572?query=Qa%20automation%20engineer")
