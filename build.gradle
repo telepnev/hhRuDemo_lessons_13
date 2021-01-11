@@ -42,9 +42,13 @@ dependencies {
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
+
+}
+
+tasks.withType(Test) {
+    systemProperties = System.properties
 }
 
 test {
-    systemProperties = System.properties
     useJUnitPlatform()
 }
