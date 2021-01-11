@@ -1,22 +1,43 @@
-plugins {
-    id 'java'
-    id "io.qameta.allure" version "2.8.1"
+buildscript {
+    repositories {
+        jcenter()
+    }
 }
 
-group 'org.example'
-version '1.0-SNAPSHOT'
+plugins {
+    id 'java-library'
+    id 'application'
+    id 'io.qameta.allure' version '2.8.1'}
 
 repositories {
     mavenCentral()
 }
 
-allure {
-    autoconfigure = true
-    version = '2.13.5'
+ext {
+    allureVersion = "2.13.7"
+    selenideVersion = "5.16.2"
+    junitVersion = "5.7.0"
+}
 
-    useJUnit5() {
-        version = '2.13.5'
+allure {
+    version = "${allureVersion}"
+    autoconfigure = true
+    aspectjweaver = true
+    useJUnit5 {
+        version = "${allureVersion}"
     }
+}
+
+dependencies {
+    testImplementation "org.aspectj:aspectjweaver:1.9.5"
+    testImplementation "com.codeborne:selenide:${selenideVersion}"
+    testImplementation "io.qameta.allure:allure-selenide:${allureVersion}"
+    testImplementation "com.github.javafaker:javafaker:1.0.2"
+    testImplementation "ch.qos.logback:logback-classic:1.2.3"
+    testImplementation "org.aeonbits.owner:owner:1.0.12"
+
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
 }
 
 tasks.withType(JavaCompile) {
@@ -24,19 +45,6 @@ tasks.withType(JavaCompile) {
 }
 
 test {
+    systemProperties = System.properties
     useJUnitPlatform()
-}
-
-dependencies {
-    compile("io.qameta.allure:allure-java-commons:2.13.5")
-    compile("io.qameta.allure:allure-rest-assured:2.13.5")
-    compile("io.qameta.allure:allure-selenide:2.13.5")
-
-    compile("io.rest-assured:rest-assured:4.3.1")
-    compile("com.fasterxml.jackson.core:jackson-databind:2.11.2")
-
-    compile("com.codeborne:selenide:5.13.1")
-    compile("org.junit.jupiter:junit-jupiter-api:5.6.2")
-    compile("org.junit.jupiter:junit-jupiter-engine:5.6.2")
-    compile("org.junit.jupiter:junit-jupiter-params:5.6.2")
 }
