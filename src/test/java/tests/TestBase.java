@@ -7,7 +7,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import static com.codeborne.selenide.Browsers.CHROME;
 import static com.codeborne.selenide.WebDriverRunner.closeWebDriver;
 import static com.codeborne.selenide.logevents.SelenideLogger.addListener;
 import static helpers.AttachmentHelper.*;
@@ -22,20 +21,21 @@ public class TestBase {
         capabilities.setCapability("enableVNC", true);
         capabilities.setCapability("enableVideo", true);
 
-
         Configuration.browserCapabilities = capabilities;
-        Configuration.remote = "https://user1:1234@" + System.getProperty("remote.browser.url") + ":4444/wd/hub/";
+        if (System.getProperty("remote.browser.url") != null)
+            Configuration.remote = "https://user1:1234@selenoid.autotests.cloud:4444/wd/hub/";
+//                Configuration.remote = "https://user1:1234@" + System.getProperty("remote.browser.url") + ":4444/wd/hub/";
         Configuration.startMaximized = true;
-        Configuration.browser = CHROME;
     }
 
     @AfterEach
     @Step("Attachments")
-    public void afterEach(){
+    public void afterEach() {
         attachScreenshot("Last screenshot");
         attachPageSource();
         attachAsText("Browser console logs", getConsoleLogs());
-        attachVideo();
+        if (System.getProperty("remote.browser.url") != null)
+            attachVideo();
 
         closeWebDriver();
     }
