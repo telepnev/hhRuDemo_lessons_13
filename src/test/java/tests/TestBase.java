@@ -1,9 +1,8 @@
 package tests;
-import Config.ServiceConfig;
+
 import com.codeborne.selenide.Configuration;
 import io.qameta.allure.Step;
 import io.qameta.allure.selenide.AllureSelenide;
-import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -25,7 +24,7 @@ public class TestBase {
 
 
         Configuration.browserCapabilities = capabilities;
-//        Configuration.remote = "https://user1:1234@" + System.getProperty("remote.browser.url") + ":4444/wd/hub/";
+        Configuration.remote = "https://user1:1234@" + System.getProperty("remote.browser.url") + ":4444/wd/hub/";
         Configuration.startMaximized = true;
         Configuration.browser = CHROME;
     }

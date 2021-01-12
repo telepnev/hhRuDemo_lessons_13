@@ -39,7 +39,7 @@ public class UserData {
         return userPhone;
     }
 
-    String userPhone = fakeValuesService.regexify("[0-9]{10}");
+    String userPhone = fakeValuesService.regexify("[0-9]{8}");
 
     public String getFirstName() {
         return firstName;

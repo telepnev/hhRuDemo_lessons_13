@@ -2,15 +2,11 @@ package tests;
 
 import Config.ServiceConfig;
 import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
-import io.qameta.allure.selenide.AllureSelenide;
 import model.UserData;
 import org.aeonbits.owner.ConfigFactory;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

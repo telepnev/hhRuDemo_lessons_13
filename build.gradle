@@ -36,19 +36,16 @@ dependencies {
     testImplementation "ch.qos.logback:logback-classic:1.2.3"
     testImplementation "org.aeonbits.owner:owner:1.0.12"
 
+
     testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
 }
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
-
-}
-
-tasks.withType(Test) {
-    systemProperties = System.properties
 }
 
 test {
+    systemProperties = System.properties
     useJUnitPlatform()
 }
